@@ -6,11 +6,20 @@ para una matriz de tamaño n
 """
 
 def dot(x:list[float], y:list[float])->float:
-    """Producto punto entre dos vectores"""
+    """Producto punto entre dos vectores
+    primero: assert len(x) == len(y)
+    dot = [xi + yi for xi, xi in zip(x,y)]
+    return sum(dot)
+    """
+    
     ...
 
 def transpose(M:list[list[float]])->list[tuple[float]]:
-    """Devuelve traspuesta de una matriz"""
+    """Devuelve traspuesta de una matriz
+    *a desempaquetado, si a=[1,2,3] -> *M desempaquetado de matriz
+    *letras : 
+    [[M]]
+    """
     ...
 
 def matmul(A:list[list[float]], B:list[list[float]])->list[list[float]]:
