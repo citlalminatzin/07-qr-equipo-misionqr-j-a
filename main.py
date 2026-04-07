@@ -5,6 +5,8 @@ import numbers
 
 from math import pi,sin
 
+from interpolation import interpolate 
+
 from linear_solver import solve
 
 # linspace obtenido de (https://code.activestate.com/recipes/579000/)
