@@ -173,3 +173,9 @@ $$
 > **Entregable 5.** Completa el código en `main.py`
 
 > **Entregable 6.** Añade una gráfica de la interpolación de un polinomio a $\sin(x)$ en el intervalo $[0,2\pi]$ con $100$ puntos. Recibe 2 puntos extras adicionales en la práctica de tu elección si eres capaz de generar un gif que muestre como la interpolación pasa de $2$ puntos a $100$. Para ello puedes consultar este [link](https://matplotlib.org/stable/users/explain/animations/animations.html)
+
+A continuación se muestra la animación generada donde se observa el ajuste del polinomio interpolador conforme aumentan los puntos desde $n=2$ hasta $n=100$. 
+
+*Nota analítica:* En la animación se ha fijado el eje $Y$, ya que para valores grandes de $n$, la matriz de Vandermonde se vuelve mal condicionada y el polinomio sufre del **Fenómeno de Runge**, causando oscilaciones gigantescas en los extremos del intervalo que deformarían la escala visual.
+
+![Interpolación de Seno paso a paso](seno_interpolacion.gif)
