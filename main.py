@@ -3,7 +3,9 @@
 import collections
 import numbers
 
-from math import pi
+from math import pi,sin
+
+from interpolation import interpolate 
 
 from linear_solver import solve
 
@@ -46,8 +48,10 @@ class linspace(collections.abc.Sequence):
     def __hash__(self):
         return hash((type(self), self.start, self.stop, self.num))  
 
-def vandermonde_matrix(x: list[float])->list[list[float]]:
+def vandermonde_matrix(x: list[float]) -> list[list[float]]:
     """Genera una matriz de Vandermonde"""
+    n = len(x)
+    return [[xi**j for j in range(n)] for xi in x]
 
 def interpolate(points: list[float], values: list[float]) -> list[float]:
     """
@@ -55,20 +59,38 @@ def interpolate(points: list[float], values: list[float]) -> list[float]:
 
     Devuelve los coeficientes del polinomio
     """
+    
+    if len(points) != len(values):
+        raise ValueError("points y values deben tener la misma longitud")
+    
     M = vandermonde_matrix(points)
     return solve(M, values)
 
 
-def interpolate_sine(n:int)->list[float]:
+def interpolate_sine(n: int) -> list[float]:
     """Recibe la cantidad de puntos a interpolar la función seno"""
     lim_inf:float = 0
     lim_sup:float = 2 * pi
+    # Generar puntos
     points = linspace(lim_inf, lim_sup, n)
-    ...
+    
+    # Evaluar seno en esos puntos
+    values = [sin(x) for x in points]
+    
+    # Obtener coeficientes del polinomio interpolante
+    coeffs = interpolate(points, values)
+    
+    return coeffs
 
 
 def main():
-    ...
+    n = 5  # puedes cambiar esto
+    
+    coeffs = interpolate_sine(n)
+    
+    print("Coeficientes del polinomio interpolante:")
+    for i, c in enumerate(coeffs):
+        print(f"c_{i} = {c}")
 
 if __name__ == "__main__":
     main()

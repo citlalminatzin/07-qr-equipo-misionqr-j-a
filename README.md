@@ -1,10 +1,11 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/y6M6hpgi)
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23298467)
 # Factorización QR
-
-¡Adentrémonos en el increíble mundo del álgebra lineal numérica! OwO
 
 ## Integrantes
 
-- Juro por Amogasiddhi que si no me escriben los integrantes de su equipo empezando por apellido y ordenados de forma alfabética, lloro
+- Góngora Ramírez Arturo
+- Hernández Coutiño José de Jesús
 
 ## Objetivos
 
@@ -15,6 +16,17 @@
 
 ## Instrucciones
 
+Librerías necesarias: 
+
+```
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from math import pi, sin
+import collections
+import numbers
+from interpolation import interpolate 
+
+```
 Realiza los entregables en Python puro. Es decir, deberías poder ejecutar todo tu código en un entorno con solamente un Python recién instalado, sin paqueterías externas. La única excepción es para la graficación en el último entregable.
 
 ## ¿Qué demonios es la factorización QR?
@@ -172,3 +184,9 @@ $$
 > **Entregable 5.** Completa el código en `main.py`
 
 > **Entregable 6.** Añade una gráfica de la interpolación de un polinomio a $\sin(x)$ en el intervalo $[0,2\pi]$ con $100$ puntos. Recibe 2 puntos extras adicionales en la práctica de tu elección si eres capaz de generar un gif que muestre como la interpolación pasa de $2$ puntos a $100$. Para ello puedes consultar este [link](https://matplotlib.org/stable/users/explain/animations/animations.html)
+
+A continuación se muestra la animación generada donde se observa el ajuste del polinomio interpolador conforme aumentan los puntos desde $n=2$ hasta $n=100$. 
+
+*Nota analítica:* En la animación se ha fijado el eje $Y$, ya que para valores grandes de $n$, la matriz de Vandermonde se vuelve mal condicionada y el polinomio sufre del **Fenómeno de Runge**, causando oscilaciones gigantescas en los extremos del intervalo que deformarían la escala visual.
+
+![Interpolación de Seno paso a paso](seno_interpolacion.gif)
