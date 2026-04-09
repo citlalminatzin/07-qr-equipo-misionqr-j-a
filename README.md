@@ -16,6 +16,17 @@
 
 ## Instrucciones
 
+Librerías necesarias: 
+
+```
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from math import pi, sin
+import collections
+import numbers
+from interpolation import interpolate 
+
+```
 Realiza los entregables en Python puro. Es decir, deberías poder ejecutar todo tu código en un entorno con solamente un Python recién instalado, sin paqueterías externas. La única excepción es para la graficación en el último entregable.
 
 ## ¿Qué demonios es la factorización QR?
