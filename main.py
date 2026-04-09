@@ -3,7 +3,8 @@
 import collections
 import numbers
 
-from math import pi
+# Añadimos 'sin' a la importación estándar
+from math import pi, sin
 
 from linear_solver import solve
 
@@ -46,8 +47,12 @@ class linspace(collections.abc.Sequence):
     def __hash__(self):
         return hash((type(self), self.start, self.stop, self.num))  
 
-def vandermonde_matrix(x: list[float])->list[list[float]]:
+def vandermonde_matrix(x: list[float]) -> list[list[float]]:
     """Genera una matriz de Vandermonde"""
+    n = len(x)
+    # Por cada punto xi en la lista x, generamos una fila.
+    # La fila contiene xi elevado a la potencia j, desde j=0 hasta j=n-1
+    return [[xi**j for j in range(n)] for xi in x]
 
 def interpolate(points: list[float], values: list[float]) -> list[float]:
     """
@@ -59,16 +64,39 @@ def interpolate(points: list[float], values: list[float]) -> list[float]:
     return solve(M, values)
 
 
-def interpolate_sine(n:int)->list[float]:
+def interpolate_sine(n: int) -> list[float]:
     """Recibe la cantidad de puntos a interpolar la función seno"""
-    lim_inf:float = 0
-    lim_sup:float = 2 * pi
-    points = linspace(lim_inf, lim_sup, n)
-    ...
+    lim_inf: float = 0
+    lim_sup: float = 2 * pi
+    
+    # linspace se comporta como una secuencia, podemos convertirla a lista
+    points = list(linspace(lim_inf, lim_sup, n))
+    
+    # Evaluamos la función seno en cada punto generado
+    values = [sin(p) for p in points]
+    
+    # Llamamos a la función que arma el sistema y lo resuelve
+    return interpolate(points, values)
 
 
 def main():
-    ...
+    """Función principal para probar la interpolación"""
+    n_puntos = 5
+    print(f"Calculando los coeficientes del polinomio que interpola sin(x) con {n_puntos} puntos...\n")
+    
+    coeficientes = interpolate_sine(n_puntos)
+    
+    print("El polinomio aproximado es:")
+    terminos = []
+    for i, c in enumerate(coeficientes):
+        if i == 0:
+            terminos.append(f"{c:.4f}")
+        elif i == 1:
+            terminos.append(f"{c:.4f}x")
+        else:
+            terminos.append(f"{c:.4f}x^{i}")
+            
+    print(" + ".join(terminos))
 
 if __name__ == "__main__":
     main()
